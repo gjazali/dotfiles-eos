@@ -1,0 +1,35 @@
+# Create and run Java class
+run-java() {
+  command javac $1 && java $1:gs/.java/
+}
+
+# Make the image's width and height equal by creating paddings on the
+# appropriate axis (left & rignt or top & bottom).
+#
+# Parameters: $1: Input; $2: Output; $3: Background (e.g. 'transparent',
+# 'white')
+#
+square-image() {
+  local w=$(identify -format '%w' $1)
+  local h=$(identify -format '%h' $1)
+  local d=$(($w - $h))
+  local da=${d#-}
+  local additional
+  local extent_args
+  local splice_args
+
+  [[ $(($da / 2 + $da / 2)) == $da ]] && additional=0 || additional=1
+
+  if [[ $(($w)) > $(($h)) ]]; then
+    extent_args="${w}x$(($h + $da / 2))"
+    splice_args="0x$(($da / 2 + $additional))"
+  else
+    extent_args="$(($w + $da / 2))x${h}"
+    splice_args="$(($da / 2 + $additional))x0"
+  fi
+
+  command convert \
+    -extent $extent_args -background $3 \
+    -splice $splice_args -background $3 \
+    $1 $2
+}

@@ -1,0 +1,75 @@
+# Allow the use of functions in prompt
+setopt PROMPT_SUBST
+
+# Colours
+autoload -U colors && colors
+
+# Exit code
+local exit_code="%(?,,\$?: %{$fg[red]%}%?%{$reset_color%})"
+
+# Version control system
+vcs_prompt_prefix_1=" %{$fg[fg]%}on%{$reset_color%} "
+vcs_prompt_prefix_2=": %{$fg[cyan]%}%{$reset_color%} %{$fg[cyan]%}"
+vcs_prompt_suffix="%{$reset_color%}"
+vcs_prompt_dirty=" %{$fg[red]%} Dirty%{$reset_color%}"
+vcs_prompt_clean=" %{$fg[green]%} Clean%{$reset_color%}"
+
+# Specific for Git
+git_prompt_prefix="${vcs_prompt_prefix_1}Git${vcs_prompt_prefix_2}"
+git_prompt_suffix="${vcs_prompt_suffix}"
+git_prompt_dirty="${vcs_prompt_dirty}"
+git_prompt_clean="${vcs_prompt_clean}"
+
+# Branch name
+git_branch() {
+  git branch --show-current
+}
+
+# Working tree status
+git_tree_status() {
+  git diff-index --quiet HEAD -- 2> /dev/null \
+    && test -z "$(git ls-files --exclude-standard --others)" \
+    && echo ${git_prompt_clean} \
+    || echo ${git_prompt_dirty}
+}
+
+# Check whether the local repository is behind or ahead its remote counterpart
+git_remote_status() {
+  local git_remote_exist=$(git config --get remote.origin.url)
+  if [[ -n $git_remote_exist ]]; then # Check if remote exist
+    UPSTREAM=${1:-'@{u}'}
+    LOCAL=$(git rev-parse @)
+    REMOTE=$(git rev-parse "$UPSTREAM")
+    BASE=$(git merge-base @ "$UPSTREAM")
+
+    if [ $LOCAL = $REMOTE ]; then
+      echo " %{$fg[green]%} Up-to-date%{$reset_color%}"
+    elif [ $LOCAL = $BASE ]; then
+      echo " %{$fg[red]%} Pull now%{$reset_color%}"
+    elif [ $REMOTE = $BASE ]; then
+      echo " %{$fg[magenta]%} Push now%{$reset_color%}"
+    else
+      echo " %{$fg[yellow]%} Diverged%{$reset_color%}"
+    fi
+  else
+    echo " %{$fg[fg]%} No remote%{$reset_color%}"
+  fi
+}
+
+get_git_status() {
+  # Check if inside a Git repository
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) = true ]]; then
+    echo ${git_prompt_prefix}$(git_branch)${git_prompt_suffix}$(git_tree_status)$(git_remote_status)
+  fi
+}
+
+# Prompt
+export PROMPT='%(#,%{$terminfo[bold]$fg[fg]%}%U%n%{$reset_color%},%{$terminfo[bold]$fg[fg]%}%n%{$reset_color%})\
+%{$fg[fg]%}@\
+%{$terminfo[bold]$fg[fg]%}%m%{$reset_color%} \
+%{$fg[fg]%}in \
+%{$fg[fg]%}%U%~%u%{$reset_color%}\
+$(get_git_status)\
+ \
+%{$fg[fg]%}[%*] $exit_code
+%(#,%{$fg[magenta]%}# %{$reset_color%},%{$fg[red]%}$ %{$reset_color%})'
