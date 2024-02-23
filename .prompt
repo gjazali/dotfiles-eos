@@ -49,10 +49,10 @@ git_remote_status() {
     elif [ $REMOTE = $BASE ]; then
       echo " %{$fg[magenta]%} Push now%{$reset_color%}"
     else
-      echo " %{$fg[yellow]%} Diverged%{$reset_color%}"
+      echo " %{$fg[yellow]%} Diverged%{$reset_color%}"
     fi
   else
-    echo " %{$fg[fg]%} No remote%{$reset_color%}"
+    echo " %{$fg[fg]%} No remote%{$reset_color%}"
   fi
 }
 
