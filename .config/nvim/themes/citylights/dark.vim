@@ -168,7 +168,7 @@ call Hi(v:false,   'CursorLineNr',          s:fg.4,                 s:bg.2,     
 
 " Matching braces
 hi clear MatchParen
-call Hi(v:true,    'MatchParen',            s:fg.0,                 s:accent.blue.bright,   'NONE')
+call Hi(v:true,    'MatchParen',            '',                     s:accent.blue.dim,      'NONE')
 
 " Remove sign column background colour
 call Hi(v:false,   'SignColumn',            '',                     'NONE',                 'NONE')
@@ -260,6 +260,10 @@ call HiSp(v:false, 'CustomDiagnosticHlError',    s:diagnostics.error.sp, 'underl
 call HiSp(v:false, 'CustomDiagnosticHlWarn',     s:diagnostics.warn.sp,  'underline')
 call HiSp(v:false, 'CustomDiagnosticHlInfo',     s:diagnostics.info.sp,  'underline')
 call HiSp(v:false, 'CustomDiagnosticHlHint',     s:diagnostics.hint.sp,  'underline')
+
+" In-line diagnostics
+call Hi(v:false, 'DiagnosticUnnecessary', 'NONE', 'NONE', '')
+call HiSp(v:false, 'DiagnosticUnnecessary', '', 'underdotted')
 
 " Highlighting for virtual texts
 call Hi(v:false,   'DiagnosticVirtualTextError', s:diagnostics.error.fg, s:diagnostics.error.bg, '')

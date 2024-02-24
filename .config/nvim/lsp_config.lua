@@ -13,6 +13,8 @@ km('n', p .. 'q', vim.diagnostic.setloclist, km_opts_silent)
 -- `on_attach` & `on_exit`
 local on_attach = function(client, bufnr)
   vim.b.attached = "󰄬 LSP Attached"
+  -- Turn off the syntax highlighting capability implemented by individual LSPs
+  client.server_capabilities.semanticTokensProvider = nil
 
   -- Buffer mappings
   local buf_opts = {noremap = true, silent = true, buffer = bufnr}
