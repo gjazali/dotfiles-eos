@@ -96,8 +96,9 @@ set completeopt=menuone,noselect
 set signcolumn=yes
 
 " Wrap texts accordingly with indentation
-set breakindent breakindentopt=shift:-2 cpo+=n linebreak
-let &showbreak = '↳ '
+"set breakindent breakindentopt=shift:-2 cpo+=n linebreak
+"let &showbreak = '↳ '
+set breakindent breakindentopt=shift:0 cpo+=n linebreak
 au BufRead,FileReadPost,BufReadPre,FileReadPre * hi! link NonText LineNR
 set nowrap
 
@@ -133,7 +134,7 @@ au FileType txt set textwidth=79
 set splitbelow splitright
 
 " Mapping the tab key into 2 spaces
-filetype plugin indent on
+"filetype plugin indent on
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Syntax highlighting
