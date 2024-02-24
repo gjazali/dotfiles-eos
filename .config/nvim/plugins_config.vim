@@ -55,7 +55,6 @@ nmap ga <Plug>(EasyAlign)
 
 " VimTeX
 let g:vimtex_view_method='zathura'
-let maplocalleader = ","
 
 " Argument: e.g. '../../..'
 command! -nargs=1 TelescopeDirectoryLevel

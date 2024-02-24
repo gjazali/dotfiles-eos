@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'lewis6991/impatient.nvim'
-Plug 'nathom/filetype.nvim'
+"Plug 'nathom/filetype.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
 
