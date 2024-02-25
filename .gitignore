@@ -5,3 +5,4 @@
 .config/nvim/autoload/
 !.config/kitty/
 !.config/alacritty/
+!.config/zathura/
