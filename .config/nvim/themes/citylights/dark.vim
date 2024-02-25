@@ -163,12 +163,12 @@ call Hi(v:true,    'Cursor',                s:fg.0,                 s:accent.blu
 
 " Cursor line
 hi clear CursorLine
-call Hi(v:false,   'CursorLine',            '',                     s:bg.2,                 '')
-call Hi(v:false,   'CursorLineNr',          s:fg.4,                 s:bg.2,                 'NONE')
+call Hi(v:false,   'CursorLine',            '',                     s:bg.1,                 '')
+call Hi(v:false,   'CursorLineNr',          s:fg.4,                 s:bg.1,                 'NONE')
 
 " Matching braces
 hi clear MatchParen
-call Hi(v:true,    'MatchParen',            '',                     s:accent.blue.dim,      'NONE')
+call Hi(v:true,    'MatchParen',            '',                     s:accent.blue.medium,      'NONE')
 
 " Remove sign column background colour
 call Hi(v:false,   'SignColumn',            '',                     'NONE',                 'NONE')
@@ -262,7 +262,7 @@ call HiSp(v:false, 'CustomDiagnosticHlInfo',     s:diagnostics.info.sp,  'underl
 call HiSp(v:false, 'CustomDiagnosticHlHint',     s:diagnostics.hint.sp,  'underline')
 
 " In-line diagnostics
-call Hi(v:false, 'DiagnosticUnnecessary', 'NONE', 'NONE', '')
+call Hi(v:false, 'DiagnosticUnnecessary',   '', 'NONE', '')
 call HiSp(v:false, 'DiagnosticUnnecessary', '', 'underdotted')
 
 " Highlighting for virtual texts
@@ -286,10 +286,10 @@ set colorcolumn=99999
 call Hi(v:false, 'LightspeedGreyWash',     s:bg.6,                 'NONE', 'NONE')
 
 " lualine.nvim
-call Hi(v:false, 'LualineDiagnosticError', s:diagnostics.error.fg, s:bg.1, 'NONE')
-call Hi(v:false, 'LualineDiagnosticWarn',  s:diagnostics.warn.fg,  s:bg.1, 'NONE')
-call Hi(v:false, 'LualineDiagnosticInfo',  s:diagnostics.info.fg,  s:bg.1, 'NONE')
-call Hi(v:false, 'LualineDiagnosticHint',  s:diagnostics.hint.fg,  s:bg.1, 'NONE')
+call Hi(v:false, 'LualineDiagnosticError', s:diagnostics.error.fg, s:bg.2, 'NONE')
+call Hi(v:false, 'LualineDiagnosticWarn',  s:diagnostics.warn.fg,  s:bg.2, 'NONE')
+call Hi(v:false, 'LualineDiagnosticInfo',  s:diagnostics.info.fg,  s:bg.2, 'NONE')
+call Hi(v:false, 'LualineDiagnosticHint',  s:diagnostics.hint.fg,  s:bg.2, 'NONE')
 
 " bufferline.nvim
 let g:custom_bufferline=#{

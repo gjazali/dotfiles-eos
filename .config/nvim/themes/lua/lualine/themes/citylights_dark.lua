@@ -11,24 +11,24 @@ return {
       gui = 'NONE',
     },
     c = {
-      bg = '#282D33',
+      bg = '#383D42',
       fg = '#B4B4B4',
       gui = 'NONE',
     },
   },
   inactive = {
     a = {
-      bg = '#282D33',
+      bg = '#383D42',
       fg = '#A8AAAD',
       gui = 'NONE',
     },
     b = {
-      bg = '#282D33',
+      bg = '#383D42',
       fg = '#A8AAAD',
       gui = 'NONE',
     },
     c = {
-      bg = '#282D33',
+      bg = '#383D42',
       fg = '#B4B4B4',
       gui = 'NONE',
     },
