@@ -243,3 +243,9 @@ lspconfig.bashls.setup {
   on_attach = on_attach,
   on_exit = on_exit,
 }
+-- LaTeX
+lspconfig.texlab.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  on_exit = on_exit,
+}
