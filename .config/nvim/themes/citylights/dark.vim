@@ -22,9 +22,9 @@ let s:comment=#{
 \ }
 let s:basic=#{
   \ red       : #{
-    \ bright    : '#E27E8D',
-    \ medium    : '#7D4E58',
-    \ dim       : '#4A353E',
+    \ bright    : '#D95468',
+    \ medium    : '#783946',
+    \ dim       : '#482B34',
   \ },
   \ green     : #{
     \ bright    : '#54AF83',
@@ -69,9 +69,9 @@ let s:basic=#{
 \ }
 let s:diagnostics=#{
   \ error  : #{
-    \ sp        : '#E27E8D',
-    \ fg        : '#E27E8D',
-    \ bg        : '#4A353E',
+    \ sp        : '#D95468',
+    \ fg        : '#D95468',
+    \ bg        : '#482B34',
   \ },
   \ warn   : #{
     \ sp        : '#EBDA65',
