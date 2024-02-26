@@ -295,7 +295,7 @@ require('neo-tree').setup {
       expander_highlight = 'NeoTreeIndentMarker'
     },
     icon = {
-      default = '',
+      default = '',
     },
     modified = {
       symbol = '[+] '
@@ -368,9 +368,9 @@ require('neo-tree').setup {
   }
 }
 
-km('n', '<Space>bo', '<cmd>NeoTreeShow<CR>', km_opts)
-km('n', '<Space>bc', '<cmd>NeoTreeClose<CR>', km_opts)
-km('n', '<Space>bt', '<cmd>NeoTreeShowToggle<CR>', km_opts)
-km('n', '<Space>bf', '<cmd>NeoTreeFloat<CR>', km_opts)
-km('n', '<Space>bv', '<cmd>NeoTreeFloatToggle<CR>', km_opts)
-km('n', '<Space>bg', '<cmd>NeoTreeFocus<CR>', km_opts)
+km('n', '<Space>bo', '<cmd>Neotree show<CR>', km_opts)
+km('n', '<Space>bc', '<cmd>Neotree close<CR>', km_opts)
+km('n', '<Space>bt', '<cmd>Neotree show toggle<CR>', km_opts)
+km('n', '<Space>bf', '<cmd>Neotree float<CR>', km_opts)
+km('n', '<Space>bv', '<cmd>Neotree float toggle<CR>', km_opts)
+km('n', '<Space>bg', '<cmd>Neotree focus<CR>', km_opts)
