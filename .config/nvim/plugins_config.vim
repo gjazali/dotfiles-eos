@@ -11,6 +11,7 @@ let g:vimspector_enable_mappings='HUMAN'
 au FileType html              silent! let b:AutoPairs=AutoPairsDefine({ '<!--':'-->' }, ['{'])
 au FileType css,java,swift    silent! let b:AutoPairs=AutoPairsDefine({ '/*':'*/' })
 au FileType markdown          silent! let b:AutoPairs=AutoPairsDefine({ '*':'*', '**':'**', '***':'***', '```':'```', '<!--':'-->' })
+au FileType tex               silent! let b:AutoPairs=AutoPairsDefine({ '$':'$' })
 
 " vim-hexokinase
 " Change virtual text and sign icon
