@@ -180,6 +180,42 @@ require('fidget').setup {
 -- luasnip
 local luasnip = require('luasnip')
 
+luasnip.add_snippets(nil, {
+  all = {
+    luasnip.snippet({
+      trig = 'date',
+      namr = 'Date',
+      dscr = 'YYYY-MM-DD date'
+    }, {
+      luasnip.function_node(function() return { os.date('%Y-%m-%d') } end, {})
+    }),
+
+    luasnip.snippet({
+      trig = 'textemplate',
+      namr = 'Personal Tex Template',
+      dscr = 'Formatting template for Tex'
+    }, {
+      luasnip.text_node({
+      '\\documentclass{article}',
+      '\\usepackage{graphicx}',
+      '\\usepackage{titlesec}',
+      '\\usepackage[a4paper, margin=1in]{geometry}',
+      '\\usepackage{verbatim}',
+      '\\usepackage{enumitem}',
+      '\\usepackage{soul}',
+      '\\usepackage{hyperref}',
+      '\\hypersetup{colorlinks=true, urlcolor=blue}', '',
+      '\\title{'}), luasnip.insert_node(1, 'title'), luasnip.text_node({' \\\\ \\large \\textit{'}), luasnip.insert_node(2, 'subtitle'), luasnip.text_node({'}}',
+      '\\author{Ghazali Ahlam Jazali\\quad\\href{mailto:academic@jazali.org}{academic@jazali.org}}', '',
+      '\\date{'}), luasnip.function_node(function() return { os.date('%d %B %Y') } end, {}), luasnip.text_node({'}', '',
+      '\\begin{document}', '',
+      '\\maketitle', '',
+      '\\tableofcontents', '',
+      '\\end{document}'})
+    })
+  }
+})
+
 -- Use VSCode snippets
 require('luasnip.loaders.from_vscode').lazy_load()
 
