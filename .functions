@@ -3,13 +3,35 @@ run-java() {
   command javac $1 && java $1:gs/.java/
 }
 
+# Change display brightness (percentage)
+bright() {
+  brightnessctl set ${1}%
+}
+
+# Mount `rclone` volumes
+#
+# Parameters: $1: Remote name (e.g. onedrive); $2: Local directory (e.g.
+# ~/OneDrive)
+#
+rcmount() {
+  rclone mount $1: $2 --vfs-cache-mode writes
+}
+
 # Make the image's width and height equal by creating paddings on the
 # appropriate axis (left & rignt or top & bottom).
+#
+# Function will fail if ImageMagick (i.e. `convert`) is not installed or not on
+# `$PATH`.
 #
 # Parameters: $1: Input; $2: Output; $3: Background (e.g. 'transparent',
 # 'white')
 #
 square-image() {
+  if ! command -v convert &> /dev/null ; then
+    >&2 echo 'ImageMagick is either not installed or not on `$PATH`'
+    return 1
+  fi
+
   local w=$(identify -format '%w' $1)
   local h=$(identify -format '%h' $1)
   local d=$(($w - $h))
