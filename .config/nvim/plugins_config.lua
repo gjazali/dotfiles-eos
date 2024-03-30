@@ -2,6 +2,9 @@ local function km(...) vim.keymap.set(...) end
 local p = '<leader>' -- Prefix
 local km_opts = {noremap = true}
 
+-- leap.nvim
+require('leap').create_default_mappings()
+
 -- treesitter
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -85,6 +88,9 @@ vim.cmd [[ set fillchars+=diff:╱ ]]
 require('telescope').setup {
   defaults = {
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+    -- preview = {
+      -- treesitter = false
+    -- },
   },
 }
 
@@ -124,10 +130,6 @@ require'nvim-web-devicons'.setup {
     }
   }
 }
-
--- filetype.nvim
--- Do not source the default filetype.vim
-vim.g.did_load_filetypes = 1
 
 -- lualine
 -- Lualine is configured in another file:
@@ -204,9 +206,9 @@ luasnip.add_snippets(nil, {
       '\\usepackage{enumitem}',
       '\\usepackage{soul}',
       '\\usepackage{hyperref}',
-      '\\hypersetup{colorlinks=true, urlcolor=blue}', '',
+      '\\hypersetup{colorlinks=true}', '',
       '\\title{'}), luasnip.insert_node(1, 'title'), luasnip.text_node({' \\\\ \\large \\textit{'}), luasnip.insert_node(2, 'subtitle'), luasnip.text_node({'}}',
-      '\\author{Ghazali Ahlam Jazali\\quad\\href{mailto:academic@jazali.org}{academic@jazali.org}}', '',
+      '\\author{Ghazali Ahlam Jazali\\quad\\href{mailto:academic@jazali.org}{\texttt{academic@jazali.org}}}', '',
       '\\date{'}), luasnip.function_node(function() return { os.date('%d %B %Y') } end, {}), luasnip.text_node({'}', '',
       '\\begin{document}', '',
       '\\maketitle', '',
@@ -407,6 +409,8 @@ require('neo-tree').setup {
 km('n', '<Space>bo', '<cmd>Neotree show<CR>', km_opts)
 km('n', '<Space>bc', '<cmd>Neotree close<CR>', km_opts)
 km('n', '<Space>bt', '<cmd>Neotree show toggle<CR>', km_opts)
+km('n', '<Space>bl', '<cmd>Neotree left<CR>', km_opts)
+km('n', '<Space>br', '<cmd>Neotree right<CR>', km_opts)
 km('n', '<Space>bf', '<cmd>Neotree float<CR>', km_opts)
 km('n', '<Space>bv', '<cmd>Neotree float toggle<CR>', km_opts)
 km('n', '<Space>bg', '<cmd>Neotree focus<CR>', km_opts)

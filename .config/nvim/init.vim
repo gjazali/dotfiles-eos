@@ -1,8 +1,8 @@
+" Enable Lua module loader
+lua vim.loader.enable()
+
 " Plugins
 source $DOTFILES/.config/nvim/plugins.vim
-
-" Before any other Lua plugins load (to lazy-load them)
-lua require('impatient')
 
 " General settings
 source $DOTFILES/.config/nvim/options.vim

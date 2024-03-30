@@ -1,3 +1,6 @@
+" Turn off syntax highlighting
+syntax off
+
 " Line number
 set number relativenumber
 
@@ -11,9 +14,6 @@ set clipboard=unnamedplus
 " Use semicolon to enter command mode
 noremap ; :
 noremap : ;
-
-" Cursor line
-set cursorline
 
 " Color column
 au VimEnter * set colorcolumn=80

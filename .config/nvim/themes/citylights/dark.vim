@@ -100,6 +100,11 @@ let s:accent=#{
     \ medium    : '#430F91',
     \ dim       : '#2D165A',
   \ },
+  \ dark : #{
+    \ bright    : '#101419',
+    \ medium    : '#0E1115',
+    \ dim       : '#050607',
+  \ },
 \ }
 
 " Syntax
@@ -147,8 +152,8 @@ call Hi(v:true,    'Normal',                s:fg.1,                 'NONE',     
 call Hi(v:true,    'Comment',               '',                     '',                     'NONE')
 
 " Menu
-call Hi(v:false,   'Pmenu',                 s:fg.2,                 '#0E1115',              'NONE')
-call Hi(v:false,   'PmenuSel',              '#0E1115',              s:fg.0,                 'NONE')
+call Hi(v:false,   'Pmenu',                 s:fg.2,                 s:accent.dark.medium,   'NONE')
+call Hi(v:false,   'PmenuSel',              s:accent.dark.medium,   s:fg.0,                 'NONE')
 call Hi(v:false,   'PmenuSbar',             '',                     s:bg.3,                 'NONE')
 call Hi(v:false,   'PmenuThumb',            '',                     s:fg.4,                 'NONE')
 call Hi(v:false,   'CmpItemKind',           s:accent.blue.bright,   'NONE',                 'NONE')
@@ -163,8 +168,8 @@ call Hi(v:true,    'Cursor',                s:fg.0,                 s:accent.blu
 
 " Cursor line
 hi clear CursorLine
-call Hi(v:false,   'CursorLine',            '',                     s:bg.1,                 '')
-call Hi(v:false,   'CursorLineNr',          s:fg.4,                 s:bg.1,                 'NONE')
+call Hi(v:false,   'CursorLine',            '',                     s:accent.dark.bright,   '')
+call Hi(v:false,   'CursorLineNr',          s:fg.4,                 s:accent.dark.bright,   'NONE')
 
 " Matching braces
 hi clear MatchParen
@@ -175,7 +180,7 @@ call Hi(v:false,   'SignColumn',            '',                     'NONE',     
 call Hi(v:false,   'LineNr',                s:basic.grey.medium,    'NONE',                 '')
 
 " ColorColumn
-call Hi(v:true,    'ColorColumn',           'NONE',                 s:bg.1,                 'NONE')
+call Hi(v:true,    'ColorColumn',           'NONE',                 s:accent.dark.bright,   'NONE')
 
 " Visual mode
 hi clear Visual
@@ -285,6 +290,11 @@ set colorcolumn=99999
 " lightspeed.nvim
 call Hi(v:false, 'LightspeedGreyWash',     s:bg.6,                 'NONE', 'NONE')
 
+" leap.nvim
+call Hi(v:false, 'LeapLabelPrimary',       s:bg.0,                s:basic.orange.bright, 'nocombine,bold')
+call Hi(v:false, 'LeapLabelSecondary',     s:bg.0,                s:basic.cyan.bright,   'nocombine,bold')
+call Hi(v:false, 'LeapMatch',              s:basic.orange.bright, '',                    'underline,nocombine')
+
 " lualine.nvim
 call Hi(v:false, 'LualineDiagnosticError', s:diagnostics.error.fg, s:bg.2, 'NONE')
 call Hi(v:false, 'LualineDiagnosticWarn',  s:diagnostics.warn.fg,  s:bg.2, 'NONE')
@@ -299,7 +309,7 @@ let g:custom_bufferline=#{
   \ visible       : #{ bg: s:bg.6, fg: s:fg.0 },
   \ duplicate     : #{
     \ background    : #{ fg: s:bg.7 },
-    \ visible       : #{ fg: s:fg.4 },
+    \ visible       : #{ fg: s:fg.3 },
     \ selected      : #{ fg: s:bg.6 },
   \ },
   \ separator     : #{ bg: s:bg.0 },

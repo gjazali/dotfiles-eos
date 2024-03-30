@@ -142,7 +142,7 @@ vim.cmd [[
 -- Change the character preceding the diagnostics virtual text
 vim.diagnostic.config({
   virtual_text = {
-    prefix = '■',
+    prefix = '▪',
     source = "if_many",
   },
   float = {
@@ -187,13 +187,6 @@ lspconfig.jdtls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   on_exit = on_exit,
-  cmd = {
-    'jdtls',
-    '-configuration',
-    '/home/runner/.cache/jdtls/config',
-    '-data',
-    '/home/runner/.cache/jdtls/workspace',
-  },
 }
 -- Lua
 lspconfig.lua_ls.setup {

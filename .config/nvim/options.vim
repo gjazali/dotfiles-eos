@@ -56,6 +56,26 @@ noremap <down> <nop> | inoremap <down> <nop>
 noremap <left> <nop> | inoremap <left> <nop>
 noremap <right> <nop> | inoremap <right> <nop>
 
+" Map `j` and `k` to always do `gj` and `gk`
+noremap j gj
+noremap k gk
+
+" `en_US` spell checking
+"
+" NOTE:
+" `]s` and `[s`: Next and previous mispelled words
+" `z=`         : Get correct spelling for word under/after cursor
+noremap <leader>sn <cmd>setlocal spell spelllang=en_us<CR>
+noremap <leader>sf <cmd>setlocal nospell<CR>
+
+" Scroll up and down
+"
+" NOTE:
+" Before migrating this config to a new system, find out what `Alt + <key>` is
+" outputting by using `Ctrl + v` and type `Alt + <key>`.
+noremap <M-j> <C-e>
+noremap <M-k> <C-y>
+
 " Increment and decrement controls
 noremap <C-n> <C-a>
 noremap <C-p> <C-x>

@@ -1,7 +1,7 @@
 require('lualine').setup {
   options = {
     theme = lualine_theme,
-    section_separators = {left = ' ', right = ' '},
+    section_separators = '',
     component_separators = {left = '│', right = '│'},
     disabled_filetypes = {'neo-tree'},
   },
@@ -32,6 +32,6 @@ require('lualine').setup {
         symbols = {error = ' ', warn = ' ', info = ' ', hint = '󰌵 '},
       },
     },
-    lualine_x = {'encoding', 'fileformat', {'filetype', colored = false}},
+    lualine_x = {'encoding', {'filetype', colored = false}},
   },
 }

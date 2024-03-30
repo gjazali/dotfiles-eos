@@ -6,13 +6,6 @@ let g:vim_markdown_folding_disabled = 1
 " Enable default key maps for Vimspector
 let g:vimspector_enable_mappings='HUMAN'
 
-" autopairs
-" Add characters to auto-pair on certain file types
-au FileType html              silent! let b:AutoPairs=AutoPairsDefine({ '<!--':'-->' }, ['{'])
-au FileType css,java,swift    silent! let b:AutoPairs=AutoPairsDefine({ '/*':'*/' })
-au FileType markdown          silent! let b:AutoPairs=AutoPairsDefine({ '*':'*', '**':'**', '***':'***', '```':'```', '<!--':'-->' })
-au FileType tex               silent! let b:AutoPairs=AutoPairsDefine({ '$':'$' })
-
 " vim-hexokinase
 " Change virtual text and sign icon
 let g:Hexokinase_virtualText = '█'
@@ -35,7 +28,7 @@ let g:Hexokinase_ftDisabled = ['asm']
 
 " nerdcommenter
 " Add space after commenting with NERDCommenter
-let NERDSpaceDelims=1
+"let NERDSpaceDelims=1
 
 " vim-fugitive
 " Automatically correct `:git` to Fugitive's `:Git`
