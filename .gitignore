@@ -6,3 +6,9 @@
 !.config/kitty/
 !.config/alacritty/
 !.config/zathura/
+.config/i3/*
+!.config/i3/config
+!.config/i3/i3blocks.conf
+!.config/i3/i3-lock-screen.png
+!.config/i3/scripts/
+!.config/fcitx5/

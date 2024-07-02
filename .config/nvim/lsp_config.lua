@@ -12,7 +12,7 @@ km('n', p .. 'q', vim.diagnostic.setloclist, km_opts_silent)
 
 -- `on_attach` & `on_exit`
 local on_attach = function(client, bufnr)
-  vim.b.attached = "󰄬 LSP Attached"
+  vim.b.attached = "󰄬 LSP"
   -- Turn off the syntax highlighting capability implemented by individual LSPs
   client.server_capabilities.semanticTokensProvider = nil
 
@@ -195,28 +195,15 @@ lspconfig.lua_ls.setup {
   on_exit = on_exit,
   settings = {
     Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
       diagnostics = {
         globals = {'vim'},
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file('', true),
-        checkThirdParty = false,
+        disable = {"missing-parameters", "missing-fields"},
       },
       telemetry = {
         enable = false,
       },
     },
   },
-}
--- NASM/GAS/GO Assembly
-lspconfig.asm_lsp.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  on_exit = on_exit,
-  filetypes = {'asm', 'vmasm', 's', 'S'},
 }
 -- Typescript/Javascript
 lspconfig.tsserver.setup {
@@ -236,8 +223,14 @@ lspconfig.bashls.setup {
   on_attach = on_attach,
   on_exit = on_exit,
 }
--- LaTeX
+-- TeX
 lspconfig.texlab.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  on_exit = on_exit,
+}
+-- MATLAB
+lspconfig.matlab_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   on_exit = on_exit,

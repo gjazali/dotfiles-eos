@@ -266,14 +266,20 @@ endfunction
 
 let g:fullhi_buffer=#{}
 
-let g:fullhi_default=#{
-  \ diff: 1,
-  \ markdown: 1,
-  \ gitcommit: 1,
-  \ git: 1,
-  \ java: 1,
-  \ netrw: 1,
-\ }
+"let g:fullhi_default=#{
+  "\ diff: 1,
+  "\ markdown: 1,
+  "\ gitcommit: 1,
+  "\ git: 1,
+  "\ java: 1,
+  "\ html: 1,
+  "\ tex: 1,
+  "\ netrw: 1,
+"\ }
+
+let g:fullhi_default={}
+
+let g:fullhi_global_default=1
 
 " For the first time entering a buffer
 function FullHiInit()
@@ -282,7 +288,9 @@ function FullHiInit()
     if getbufvar(bufnr("%"), '&buflisted')==1
       if has_key(g:fullhi_default, &ft)
         call FullHiSwitch(g:fullhi_default[&ft])
-      else
+      elseif &ft!=''
+        call FullHiSwitch(g:fullhi_global_default)
+      else " If the filetype is unknown
         call FullHiSwitch(0)
       endif
     endif
@@ -326,8 +334,8 @@ function FullHiUnlisted()
         silent! call FullHiSwitch(g:fullhi_default[&ft])
         let b:fullhi_status=g:fullhi_default[&ft]
       else
-        silent! call FullHiSwitch(0)
-        let b:fullhi_status=0
+        silent! call FullHiSwitch(g:fullhi_global_default)
+        let b:fullhi_status=g:fullhi_global_default
       endif
     elseif exists('b:fullhi_status')!=0
       silent! call FullHiSwitch(b:fullhi_status)
@@ -367,7 +375,10 @@ function FullHiComment()
   call filter(syntax_items, {idx, val -> match(val, '^\w') > -1})
   call map(syntax_items, {idx, val -> split(val)[0]})
   for item in syntax_items
-    if match(item, '\c\mcomment') == -1
+    " To make sure that strings with comment prefixes are not highlighted as
+    " comments, match for strings as well. A limitation of this is a different
+    " highlighting for strings (non-`Normal`).
+    if match(item, '\c\mcomment') == -1 && match(item, '.*[Ss]tring') == -1
       try
         exe 'syntax clear' item
       catch /^Vim\%((\a\+)\)\=:E28/

@@ -17,17 +17,17 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- nvim-ts-autotag
-require'nvim-ts-autotag'.setup {
-  filetypes = {
-    'html',
-    'javascript',
-    'javascriptreact',
-    'typescriptreact',
-    'svelte',
-    'vue',
-    'markdown'
-  },
-}
+--require'nvim-ts-autotag'.setup {
+  --filetypes = {
+    --'html',
+    --'javascript',
+    --'javascriptreact',
+    --'typescriptreact',
+    --'svelte',
+    --'vue',
+    --'markdown'
+  --},
+--}
 
 -- gitsigns
 require('gitsigns').setup {
@@ -77,20 +77,13 @@ vim.cmd [[
 -- bufferline.nvim is configured in another file:
 -- $DOTFILES/.config/nvim/bufferline_config.lua
 
--- diffview
-local cb = require'diffview.config'.diffview_callback
-
-require'diffview'.setup {}
-
-vim.cmd [[ set fillchars+=diff:╱ ]]
-
 -- telescope.nvim
 require('telescope').setup {
   defaults = {
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-    -- preview = {
-      -- treesitter = false
-    -- },
+      --preview = {
+        --treesitter = false
+      --},
   },
 }
 
@@ -154,30 +147,9 @@ km('n', p .. 'xl', '<cmd>TroubleToggle loclist<CR>', km_opts)
 km('n', p .. 'gR', '<cmd>TroubleToggle lsp_references<CR>', km_opts)
 
 -- indent-blankline
-require('ibl').setup {
-  indent = { char = "│" }
-}
-
--- fidget.nvim
-require('fidget').setup {
-  progress = {
-    display = {
-      done_icon = "󰄬",
-    }
-  },
-  notification = {
-    window = {
-      normal_hl = "Normal",
-      border = "single",
-      winblend = 0,
-    }
-  },
-  integration = {
-    ["nvim-tree"] = {
-      enable = true,
-    }
-  }
-}
+--require('ibl').setup {
+  --indent = { char = "│" }
+--}
 
 -- luasnip
 local luasnip = require('luasnip')
@@ -219,7 +191,7 @@ luasnip.add_snippets(nil, {
 })
 
 -- Use VSCode snippets
-require('luasnip.loaders.from_vscode').lazy_load()
+--require('luasnip.loaders.from_vscode').lazy_load()
 
 -- Auto-completion & snippets
 -- Kind icons
@@ -285,7 +257,7 @@ cmp.setup {
     {name = 'nvim_lsp'},
     {name = 'buffer'},
     {name = 'luasnip'},
-    {name = 'calc'},
+    --{name = 'calc'},
     {name = 'path'},
     {name = 'latex_symbols'}
   },
@@ -314,103 +286,103 @@ cmp.setup {
 }
 
 -- neo-tree
-require('neo-tree').setup {
-  close_if_last_window = true,
-  popup_border_style = 'single',
-  enable_git_status = true,
-  enable_diagnostics = false,
-  default_component_configs = {
-    indent = {
-      indent_size = 2,
-      padding = 1,
-      with_markers = true,
-      indent_marker = '│',
-      last_indent_marker = '└',
-      highlight = 'IndentBlanklineChar',
-      with_expanders = true,
-      expander_collapsed = '',
-      expander_expanded = '',
-      expander_highlight = 'NeoTreeIndentMarker'
-    },
-    icon = {
-      default = '',
-    },
-    modified = {
-      symbol = '[+] '
-    },
-    git_status = {
-      symbols = {
-        added = ' ',
-        modified = ' ',
-        deleted = ' ',
-        renamed = ' ',
-        untracked = ' ',
-        ignored = ' ',
-        unstaged = ' ',
-        staged = ' ',
-        conflict = ' ',
-      },
-    },
-  },
-  window = {
-    mappings = {
-      ['o'] = 'open',
-      ['s'] = 'open_split',
-      ['v'] = 'open_vsplit',
-      ['t'] = 'open_tabnew',
-      ['a'] = 'add',
-      ['A'] = 'add_directory',
-      ['d'] = 'delete',
-      ['r'] = 'rename',
-      ['y'] = 'copy_to_clipboard',
-      ['x'] = 'cut_to_clipboard',
-      ['p'] = 'paste_from_clipboard',
-      ['c'] = 'copy',
-      ['m'] = 'move',
-      ['q'] = 'close_window',
-      ['R'] = 'refresh',
-      ['?'] = 'show_help',
-      ['<'] = 'prev_source',
-      ['>'] = 'next_source',
-    },
-  },
-  filesystem = {
-    hijack_netrw_behavior = 'open_default',
-    window = {
-      mappings = {
-        ['<BS>'] = 'navigate_up',
-        ['<CR>'] = 'set_root',
-        ['.'] = 'toggle_hidden',
-        ['/'] = 'fuzzy_finder',
-        ['D'] = 'fuzzy_finder_directory',
-        ['f'] = 'filter_on_submit',
-        ['<C-x>'] = 'clear_filter',
-        ['[g'] = 'prev_git_modified',
-        [']g'] = 'next_git_modified',
-      },
-    },
-  },
-  git_status = {
-    window = {
-      position = 'float',
-      mappings = {
-        ['gA'] = 'git_add_all',
-        ['ga'] = 'git_add_file',
-        ['gu'] = 'git_unstage_file',
-        ['gr'] = 'git_revert_file',
-        ['gc'] = 'git_commit',
-        ['gp'] = 'git_push',
-        ['gg'] = 'git_commit_and_push',
-      }
-    }
-  }
-}
+--require('neo-tree').setup {
+  --close_if_last_window = true,
+  --popup_border_style = 'single',
+  --enable_git_status = true,
+  --enable_diagnostics = false,
+  --default_component_configs = {
+    --indent = {
+      --indent_size = 2,
+      --padding = 1,
+      --with_markers = true,
+      --indent_marker = '│',
+      --last_indent_marker = '└',
+      --highlight = 'IndentBlanklineChar',
+      --with_expanders = true,
+      --expander_collapsed = '',
+      --expander_expanded = '',
+      --expander_highlight = 'NeoTreeIndentMarker'
+    --},
+    --icon = {
+      --default = '',
+    --},
+    --modified = {
+      --symbol = '[+] '
+    --},
+    --git_status = {
+      --symbols = {
+        --added = ' ',
+        --modified = ' ',
+        --deleted = ' ',
+        --renamed = ' ',
+        --untracked = ' ',
+        --ignored = ' ',
+        --unstaged = ' ',
+        --staged = ' ',
+        --conflict = ' ',
+      --},
+    --},
+  --},
+  --window = {
+    --mappings = {
+      --['o'] = 'open',
+      --['s'] = 'open_split',
+      --['v'] = 'open_vsplit',
+      --['t'] = 'open_tabnew',
+      --['a'] = 'add',
+      --['A'] = 'add_directory',
+      --['d'] = 'delete',
+      --['r'] = 'rename',
+      --['y'] = 'copy_to_clipboard',
+      --['x'] = 'cut_to_clipboard',
+      --['p'] = 'paste_from_clipboard',
+      --['c'] = 'copy',
+      --['m'] = 'move',
+      --['q'] = 'close_window',
+      --['R'] = 'refresh',
+      --['?'] = 'show_help',
+      --['<'] = 'prev_source',
+      --['>'] = 'next_source',
+    --},
+  --},
+  --filesystem = {
+    --hijack_netrw_behavior = 'open_default',
+    --window = {
+      --mappings = {
+        --['<BS>'] = 'navigate_up',
+        --['<CR>'] = 'set_root',
+        --['.'] = 'toggle_hidden',
+        --['/'] = 'fuzzy_finder',
+        --['D'] = 'fuzzy_finder_directory',
+        --['f'] = 'filter_on_submit',
+        --['<C-x>'] = 'clear_filter',
+        --['[g'] = 'prev_git_modified',
+        --[']g'] = 'next_git_modified',
+      --},
+    --},
+  --},
+  --git_status = {
+    --window = {
+      --position = 'float',
+      --mappings = {
+        --['gA'] = 'git_add_all',
+        --['ga'] = 'git_add_file',
+        --['gu'] = 'git_unstage_file',
+        --['gr'] = 'git_revert_file',
+        --['gc'] = 'git_commit',
+        --['gp'] = 'git_push',
+        --['gg'] = 'git_commit_and_push',
+      --}
+    --}
+  --}
+--}
 
-km('n', '<Space>bo', '<cmd>Neotree show<CR>', km_opts)
-km('n', '<Space>bc', '<cmd>Neotree close<CR>', km_opts)
-km('n', '<Space>bt', '<cmd>Neotree show toggle<CR>', km_opts)
-km('n', '<Space>bl', '<cmd>Neotree left<CR>', km_opts)
-km('n', '<Space>br', '<cmd>Neotree right<CR>', km_opts)
-km('n', '<Space>bf', '<cmd>Neotree float<CR>', km_opts)
-km('n', '<Space>bv', '<cmd>Neotree float toggle<CR>', km_opts)
-km('n', '<Space>bg', '<cmd>Neotree focus<CR>', km_opts)
+--km('n', '<Space>bo', '<cmd>Neotree show<CR>', km_opts)
+--km('n', '<Space>bc', '<cmd>Neotree close<CR>', km_opts)
+--km('n', '<Space>bt', '<cmd>Neotree show toggle<CR>', km_opts)
+--km('n', '<Space>bl', '<cmd>Neotree left<CR>', km_opts)
+--km('n', '<Space>br', '<cmd>Neotree right<CR>', km_opts)
+--km('n', '<Space>bf', '<cmd>Neotree float<CR>', km_opts)
+--km('n', '<Space>bv', '<cmd>Neotree float toggle<CR>', km_opts)
+--km('n', '<Space>bg', '<cmd>Neotree focus<CR>', km_opts)

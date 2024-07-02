@@ -1,54 +1,67 @@
 [window]
-opacity = 0.9
+opacity = 1.0
 blur = false
+dynamic_padding = true
 
 [font]
-size = 10
+size = 12
 builtin_box_drawing = true
+offset.y = -1
 
 [font.normal]
-family = "SauceCodePro Nerd Font"
+family = "Inconsolata"
 style = "Regular"
 
 [font.bold]
-family = "SauceCodePro Nerd Font"
+family = "Inconsolata"
 style = "Bold"
 
 [font.italic]
-family = "SauceCodePro Nerd Font"
-style = "Italic"
+family = "Inconsolata"
+style = "Regular"
 
 [font.bold_italic]
-family = "SauceCodePro Nerd Font"
-style = "Bold Italic"
+family = "Inconsolata"
+style = "Bold"
+
+[selection]
+save_to_clipboard = true
 
 # Default colors
 [colors.primary]
-  background = '#171d23'
-  foreground = '#ffffff'
+background = '#000000'
+foreground = '#ffffff'
 
 # Cursor colors
 [colors.cursor]
-  text   = '#fafafa'
-  cursor = '#008b94'
+text   = '#ffffff'
+cursor = '#007FFF'
 
 # Normal colors
 [colors.normal]
-  black   = '#333f4a'
-  red     = '#d95468'
-  green   = '#8bd49c'
-  blue    = '#539afc'
-  magenta = '#b62d65'
-  cyan    = '#70e1e8'
-  white   = '#b7c5d3'
+black   = '#000000'
+white   = '#ffffff'
+red     = '#e85468'
+green   = '#54ca83'
+blue    = '#007FFF'
+yellow  = '#edda53'
+magenta = '#ff80ff'
+cyan    = '#70e1e8'
 
 # Bright colors
 [colors.bright]
-  black   = '#41505e'
-  red     = '#d95468'
-  green   = '#8bd49c'
-  yellow  = '#ebbf83'
-  blue    = '#5ec4ff'
-  magenta = '#e27e8d'
-  cyan    = '#70e1e8'
-  white   = '#ffffff'
+black   = '#464646'
+white   = '#ffffff'
+red     = '#EE8391'
+green   = '#83D8A5'
+blue    = '#46A2FF'
+yellow  = '#F2E482'
+magenta = '#FFA3FF'
+cyan    = '#97E9EE'
+
+[keyboard]
+bindings = [
+  {key = ']', mods = 'Control', action = 'IncreaseFontSize'},
+  {key = '[', mods = 'Control', action = 'DecreaseFontSize'},
+  {key = '=', mods = 'Control', action = 'ResetFontSize'}
+]

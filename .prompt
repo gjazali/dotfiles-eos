@@ -11,8 +11,8 @@ local exit_code="%(?,,\$?: %{$fg[red]%}%?%{$reset_color%})"
 vcs_prompt_prefix_1=" %{$fg[fg]%}on%{$reset_color%} "
 vcs_prompt_prefix_2=": %{$fg[cyan]%}%{$reset_color%} %{$fg[cyan]%}"
 vcs_prompt_suffix="%{$reset_color%}"
-vcs_prompt_dirty=" %{$fg[red]%} Dirty%{$reset_color%}"
-vcs_prompt_clean=" %{$fg[green]%} Clean%{$reset_color%}"
+vcs_prompt_dirty=" %{$fg[red]%}󰅖 Dirty%{$reset_color%}"
+vcs_prompt_clean=" %{$fg[green]%}󰄬 Clean%{$reset_color%}"
 
 # Specific for Git
 git_prompt_prefix="${vcs_prompt_prefix_1}Git${vcs_prompt_prefix_2}"
@@ -43,16 +43,16 @@ git_remote_status() {
     BASE=$(git merge-base @ "$UPSTREAM")
 
     if [ $LOCAL = $REMOTE ]; then
-      echo " %{$fg[green]%} Up-to-date%{$reset_color%}"
+      echo " %{$fg[green]%} Up-to-date%{$reset_color%}"
     elif [ $LOCAL = $BASE ]; then
-      echo " %{$fg[red]%} Pull now%{$reset_color%}"
+      echo " %{$fg[red]%} Pull now%{$reset_color%}"
     elif [ $REMOTE = $BASE ]; then
-      echo " %{$fg[magenta]%} Push now%{$reset_color%}"
+      echo " %{$fg[magenta]%} Push now%{$reset_color%}"
     else
-      echo " %{$fg[yellow]%}󰃻 Diverged%{$reset_color%}"
+      echo " %{$fg[yellow]%} Diverged%{$reset_color%}"
     fi
   else
-    echo " %{$fg[fg]%} No remote%{$reset_color%}"
+    echo " %{$fg[fg]%}󰲛 No remote%{$reset_color%}"
   fi
 }
 

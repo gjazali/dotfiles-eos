@@ -1,116 +1,116 @@
 let s:fg=#{
   \ 0: '#FFFFFF',
-  \ 1: '#E5E6E7',
-  \ 2: '#CBCDCE',
-  \ 3: '#B2B4B6',
-  \ 4: '#989B9D',
+  \ 1: '#F4F4F4',
+  \ 2: '#E8E8E8',
+  \ 3: '#DDDDDD',
+  \ 4: '#D1D1D1',
 \ }
 let s:bg=#{
-  \ 0: '#171D23',
-  \ 1: '#282D33',
-  \ 2: '#383D42',
-  \ 3: '#494D52',
-  \ 4: '#595E62',
-  \ 5: '#6A6E72',
-  \ 6: '#7A7E81',
+  \ 0: '#000000',
+  \ 1: '#141415',
+  \ 2: '#282929',
+  \ 3: '#3C3D3E',
+  \ 4: '#4F5153',
+  \ 5: '#636568',
+  \ 6: '#777A7C',
   \ 7: '#8B8E91',
 \ }
 
 let s:comment=#{
-  \ distinct  : '#008B94',
-  \ neutral   : '#686C70',
+  \ distinct  : '#007FFF',
+  \ neutral   : '#003A74',
 \ }
 let s:basic=#{
   \ red       : #{
-    \ bright    : '#D95468',
-    \ medium    : '#783946',
-    \ dim       : '#482B34',
+    \ bright    : '#e85468',
+    \ medium    : '#541F26',
+    \ dim       : '#2A0F13',
   \ },
   \ green     : #{
-    \ bright    : '#54AF83',
-    \ medium    : '#366653',
-    \ dim       : '#26423B',
+    \ bright    : '#54ca83',
+    \ medium    : '#1F4930',
+    \ dim       : '#0F2518',
   \ },
   \ orange    : #{
-    \ bright    : '#EBBF83',
-    \ medium    : '#816E53',
-    \ dim       : '#4C463B',
+    \ bright    : '#faa128',
+    \ medium    : '#5B3B0F',
+    \ dim       : '#2D1D07',
   \ },
   \ yellow    : #{
-    \ bright    : '#EBDA65',
-    \ medium    : '#817C44',
-    \ dim       : '#4C4C34',
+    \ bright    : '#edda53',
+    \ medium    : '#564F1E',
+    \ dim       : '#2B280F',
   \ },
   \ blue      : #{
-    \ bright    : '#68A1F0',
-    \ medium    : '#405F8A',
-    \ dim       : '#2B3E56',
+    \ bright    : '#007FFF',
+    \ medium    : '#002E5D',
+    \ dim       : '#00172E',
   \ },
   \ cyan      : #{
     \ bright    : '#70E1E8',
-    \ medium    : '#447F86',
-    \ dim       : '#2D4E54',
+    \ medium    : '#295254',
+    \ dim       : '#14292A',
   \ },
   \ magenta   : #{
     \ bright    : '#FF80FF',
-    \ medium    : '#8B4F91',
-    \ dim       : '#51365A',
+    \ medium    : '#5D2F5D',
+    \ dim       : '#2E172E',
   \ },
   \ pink   : #{
-    \ bright    : '#D291E4',
-    \ medium    : '#755784',
-    \ dim       : '#463A53',
+    \ bright    : '#ff85b0',
+    \ medium    : '#5D3040',
+    \ dim       : '#2E1820',
   \ },
   \ grey   : #{
     \ bright    : '#718CA1',
-    \ medium    : '#445562',
-    \ dim       : '#2E3943',
+    \ medium    : '#29333B',
+    \ dim       : '#15191D',
   \ },
 \ }
 let s:diagnostics=#{
   \ error  : #{
-    \ sp        : '#D95468',
-    \ fg        : '#D95468',
-    \ bg        : '#482B34',
+    \ sp        : '#e85468',
+    \ fg        : '#e85468',
+    \ bg        : '#2A0F13',
   \ },
   \ warn   : #{
-    \ sp        : '#EBDA65',
-    \ fg        : '#EBDA65',
-    \ bg        : '#4C4C34',
+    \ sp        : '#edda53',
+    \ fg        : '#edda53',
+    \ bg        : '#2B280F',
   \ },
   \ info   : #{
     \ sp        : '#70E1E8',
     \ fg        : '#70E1E8',
-    \ bg        : '#2D4E54',
+    \ bg        : '#14292A',
   \ },
   \ hint   : #{
     \ sp        : '#FFFFFF',
     \ fg        : '#FFFFFF',
-    \ bg        : '#51565A',
+    \ bg        : '#2E2E2E',
   \ },
 \ }
 let s:accent=#{
   \ blue   : #{
-    \ bright    : '#008B94',
-    \ medium    : '#0C545C',
-    \ dim       : '#11393F',
+    \ bright    : '#007FFF',
+    \ medium    : '#002E5D',
+    \ dim       : '#00172E',
   \ },
   \ purple : #{
-    \ bright    : '#6F00FF',
-    \ medium    : '#430F91',
-    \ dim       : '#2D165A',
+    \ bright    : '#008B94',
+    \ medium    : '#003F43',
+    \ dim       : '#002628',
   \ },
   \ dark : #{
-    \ bright    : '#101419',
-    \ medium    : '#0E1115',
-    \ dim       : '#050607',
+    \ bright    : '#002346',
+    \ medium    : '#00152A',
+    \ dim       : '#001122',
   \ },
 \ }
 
 " Syntax
 let g:syntax_hi=#{
   \ Constant       : [s:fg.2,         'NONE', 'NONE'],
-  \ String         : [s:fg.2,         'NONE', 'NONE'],
+  \ String         : [s:fg.0,         'NONE', 'NONE'],
   \ Character      : [s:fg.0,         'NONE', 'NONE'],
   \ Number         : [s:fg.2,         'NONE', 'NONE'],
   \ Boolean        : [s:fg.0,         'NONE', 'bold'],
@@ -141,6 +141,7 @@ let g:syntax_hi=#{
   \ Debug          : [s:fg.0,         'NONE', 'NONE'],
   \ Underlined     : [s:fg.3,         'NONE', 'underline'],
   \ TSPunctBracket : [s:fg.0,         'NONE', 'NONE'],
+  \ Title          : [s:fg.0,         'NONE', 'NONE'],
   \ Comment        : [s:comment.distinct, 'NONE', 'NONE'],
 \ }
 
@@ -169,22 +170,23 @@ call Hi(v:true,    'Cursor',                s:fg.0,                 s:accent.blu
 " Cursor line
 hi clear CursorLine
 call Hi(v:false,   'CursorLine',            '',                     s:accent.dark.bright,   '')
-call Hi(v:false,   'CursorLineNr',          s:fg.4,                 s:accent.dark.bright,   'NONE')
+call Hi(v:false,   'CursorLineNr',          s:basic.blue.bright,    s:accent.dark.bright,   'NONE')
 
 " Matching braces
 hi clear MatchParen
 call Hi(v:true,    'MatchParen',            '',                     s:accent.blue.medium,      'NONE')
 
-" Remove sign column background colour
+" Remove sign column and fold column background colour
 call Hi(v:false,   'SignColumn',            '',                     'NONE',                 'NONE')
-call Hi(v:false,   'LineNr',                s:basic.grey.medium,    'NONE',                 '')
+call Hi(v:false,   'FoldColumn',            '',                     'NONE',                 'NONE')
+call Hi(v:false,   'LineNr',                s:bg.4,                 'NONE',                 '')
 
 " ColorColumn
 call Hi(v:true,    'ColorColumn',           'NONE',                 s:accent.dark.medium,   'NONE')
 
 " Visual mode
 hi clear Visual
-call Hi(v:false,   'Visual',                '',                     s:accent.blue.dim,      '')
+call Hi(v:false,   'Visual',                '',                     s:accent.blue.medium,   '')
 
 hi clear VisualNOS
 call Hi(v:false,   'VisualNOS',             '',                     s:accent.blue.dim,      '')
@@ -195,12 +197,12 @@ call Hi(v:false,   'Search',                'NONE',                 s:accent.pur
 call Hi(v:false,   'Substitute',            s:fg.0,                 s:accent.blue.bright,   'NONE')
 
 " Splits
-call Hi(v:false,   'VertSplit',             s:bg.4,                 s:bg.4,                 'NONE')
-call Hi(v:false,   'StatusLine',            s:bg.4,                 s:bg.4,                 'NONE')
-call Hi(v:false,   'StatusLineNC',          s:bg.4,                 s:bg.4,                 'NONE')
+call Hi(v:false,   'VertSplit',             s:bg.2,                 s:bg.2,                 'NONE')
+call Hi(v:false,   'StatusLine',            s:bg.2,                 s:bg.2,                 'NONE')
+call Hi(v:false,   'StatusLineNC',          s:bg.2,                 s:bg.2,                 'NONE')
 
 " End-of-buffer character
-call Hi(v:false,   'EndOfBuffer',           s:bg.7,                 'NONE',                 'NONE')
+call Hi(v:false,   'EndOfBuffer',           s:bg.4,                 'NONE',                 'NONE')
 
 " NonText
 call Hi(v:true,    'NonText',               s:bg.6,                 'NONE',                 'NONE')
@@ -247,8 +249,9 @@ call HiSp(v:false, 'SpellRare',             s:diagnostics.hint.sp,  'underline')
 call Hi(v:false,   'Folded',                s:basic.blue.bright,    s:bg.2,                 'NONE')
 call Hi(v:false,   'MoreMsg',               s:basic.blue.bright,    'NONE',                 'NONE')
 call Hi(v:false,   'Question',              s:basic.blue.bright,    'NONE',                 'NONE')
-call Hi(v:false,   'Title',                 s:basic.blue.bright,    'NONE',                 'NONE')
-call Hi(v:false,   'Todo',                  s:bg.0,                 s:basic.green.bright,   'NONE')
+"call Hi(v:false,   'Title',                 s:basic.blue.bright,   'NONE',                 'NONE')
+call Hi(v:false,   'Todo',                  s:bg.0,                 s:basic.blue.bright,    'NONE')
+call Hi(v:false,   'SpecialKey',            s:basic.blue.bright,    'NONE',                 'NONE')
 
 au FileType help hi! link Todo Normal
 
@@ -277,8 +280,8 @@ call Hi(v:false,   'DiagnosticVirtualTextInfo',  s:diagnostics.info.fg,  s:diagn
 call Hi(v:false,   'DiagnosticVirtualTextHint',  s:diagnostics.hint.fg,  s:diagnostics.hint.bg,  '')
 
 " Window borders
-call Hi(v:false, 'TelescopeBorder',        s:fg.0,                 'NONE', 'NONE')
-call Hi(v:false, 'CustomFloatBorder',      s:fg.0,                 'NONE', 'NONE')
+call Hi(v:false, 'TelescopeBorder',        s:bg.4,                 'NONE', 'NONE')
+call Hi(v:false, 'CustomFloatBorder',      s:bg.4,                 'NONE', 'NONE')
 
 " Plugins
 " indent-blankline
@@ -322,11 +325,11 @@ call Hi(v:false, 'LualineDiagnosticHint',  s:diagnostics.hint.fg,  s:bg.2, 'NONE
 " bufferline.nvim
 let g:custom_bufferline=#{
   \ fill          : #{ bg: s:bg.0 },
-  \ background    : #{ bg: s:bg.4, fg: s:fg.4 },
+  \ background    : #{ bg: s:bg.2, fg: s:fg.4 },
   \ selected      : #{ bg: s:fg.0, fg: s:bg.0 },
-  \ visible       : #{ bg: s:bg.6, fg: s:fg.0 },
+  \ visible       : #{ bg: s:bg.4, fg: s:fg.0 },
   \ duplicate     : #{
-    \ background    : #{ fg: s:bg.7 },
+    \ background    : #{ fg: s:bg.5 },
     \ visible       : #{ fg: s:fg.3 },
     \ selected      : #{ fg: s:bg.6 },
   \ },
@@ -359,5 +362,5 @@ call Hi(v:false, 'NeoTreeModified',     s:basic.yellow.bright, '',     'NONE')
 
 " Lualine
 lua << EOF
-lualine_theme = 'citylights_dark'
+lualine_theme = 'plain_dark_v2'
 EOF

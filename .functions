@@ -8,13 +8,119 @@ bright() {
   brightnessctl set ${1}%
 }
 
+# Run job as asynchronous and without output
+#
+# Parameters: $1: Command; $2: Arguments of the command; $3: A `--no-disown`
+# optional argument that keeps the process owned by the terminal
+#
+ra() {
+  $1 $2 > /dev/null 2>&1 &
+  [[ ! $3 == '--no-disown' ]] && disown || return 0
+}
+
+# List the first n files in a directory based on their date (the most
+# recently-modified appears on the top)
+#
+# Parameters: $1: {h|t}; $2: The number of files
+#
+lsn() {
+  # NOTE:
+  # The piping to `sed` removes the `%T@` timestamp and the `./` character that
+  # precedes the output of `find`
+  find . -type f -printf "%T@ %p\n" \
+    | sort -nr \
+    | $([[ $1 == h ]] && echo "head" || echo "tail") -n $2 \
+    | sed 's/^.\{24\}//g'
+}
+
+# Convert video from Apple's MOV format to MP4 and compressing it using the
+# H.264 codec
+#
+# Parameters: $1 Name of the input file without the `.mov` extension; $2 Name
+# of the desired output file without the `.mp4` extension
+#
+mov2mp4() {
+  ffmpeg -i $1.mov -c:v libx264 -pix_fmt yuv420p $2.mp4
+}
+
+# Remove audio from video, i.e., making it silent
+#
+# Parameters: $1 Name of the input file
+#
+silence() {
+  ffmpeg -i "$1" -c copy -an "${1%.*}_silent.${1#*.}"
+}
+
+# Convert `.ipynb` files to `.html`
+#
+# Parameters: $1: The `.ipynb` file name without the extension (if the
+# extension is included, the function will remove it automatically)
+#
+jupyter2html() {
+  random_hex=$(openssl rand -hex 4)
+  [[ $1 == *.ipynb ]] && file=$(echo $1 | sed -e "s/\.ipynb$//") || file=$1
+  temp_file=$file.no_metadata_widgets.$random_hex.ipynb
+
+  jq -M 'del(.metadata.widgets)' $file.ipynb > $temp_file
+  jupyter nbconvert --to html $temp_file --output $file.html
+  gio trash $temp_file
+}
+
+# Zip and unzip EPUB files
+#
+# When zipping, this function is designed to be used from *inside* the
+# directory
+#
+# Parameters: $1: {zip|unzip}; $2: The name of the new `.epub` file; $3 For
+# $1=unzip only, specify the name of the directory for the unzipped file
+#
+epubctl() {
+  if [[ $1 == "zip" ]]; then
+    zip -rX ../$2.epub ./* # mimetype META-INF/ OEBPS/
+  elif [[ $1 == "unzip" ]]; then
+    unzip $2 -d $3
+  else
+    >&2 echo 'Invalid argument for `$1`' && false # Output error code 1
+  fi
+}
+
+# Copy plain text file content to clipboard
+#
+# Parameters: $1: The name of the file
+#
+copypt() {
+  xclip -selection c < $1
+}
+
+# Copy plain text file content to clipboard and move to trash afterwards
+#
+# Parameters: $1: The name of the file
+#
+copyptrm() {
+  xclip -selection c < $1 && gio trash $1
+}
+
 # Mount `rclone` volumes
 #
 # Parameters: $1: Remote name (e.g. onedrive); $2: Local directory (e.g.
 # ~/OneDrive)
 #
 rcmount() {
-  rclone mount $1: $2 --vfs-cache-mode writes
+  if [[ $1 == 'onedrive' ]]; then
+    rclone mount onedrive: ~/OneDrive --onedrive-delta --vfs-cache-mode full
+  elif [[ $1 == 'googledrive' ]]; then
+    rclone mount googledrive: ~/GoogleDrive --vfs-cache-mode full
+  else
+    >&2 echo 'Invalid argument for `$1`' && false # Output error code 1
+  fi
+}
+
+# Find an item inside a directory
+#
+# Parameters: $1: The type of item; $2: The regex of the item excluding the `./`
+#
+search() {
+  find . -type $1 -regex "./$2"
 }
 
 # Make the image's width and height equal by creating paddings on the

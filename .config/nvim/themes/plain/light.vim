@@ -136,6 +136,7 @@ let g:syntax_hi=#{
   \ Debug          : [s:fg.0,             'NONE', 'NONE'],
   \ Underlined     : [s:fg.3,             'NONE', 'underline'],
   \ TSPunctBracket : [s:fg.0,             'NONE', 'NONE'],
+  \ Title          : [s:fg.0,             'NONE', 'NONE'],
   \ Comment        : [s:comment.distinct, 'NONE', 'NONE'],
 \ }
 
