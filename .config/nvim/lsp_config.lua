@@ -33,7 +33,7 @@ local on_attach = function(client, bufnr)
   km('n', p .. 'rn', vim.lsp.buf.rename, buf_opts)
   km('n', p .. 'aa', vim.lsp.buf.code_action, buf_opts)
   km('n', p .. 'gr', vim.lsp.buf.references, buf_opts)
-  km('n', p .. 'ff', vim.lsp.buf.formatting, buf_opts)
+  km('n', p .. 'ff', vim.lsp.buf.format, buf_opts)
 end
 
 local on_exit = function(code, signal, client_id)
@@ -205,12 +205,6 @@ lspconfig.lua_ls.setup {
     },
   },
 }
--- Typescript/Javascript
-lspconfig.tsserver.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  on_exit = on_exit,
-}
 -- Vim(script)
 lspconfig.vimls.setup {
   capabilities = capabilities,
@@ -231,6 +225,12 @@ lspconfig.texlab.setup {
 }
 -- MATLAB
 lspconfig.matlab_ls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  on_exit = on_exit,
+}
+-- PHP
+lspconfig.phan.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   on_exit = on_exit,

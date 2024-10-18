@@ -1,9 +1,9 @@
 let s:fg=#{
   \ 0: '#FFFFFF',
-  \ 1: '#F4F4F4',
-  \ 2: '#E8E8E8',
-  \ 3: '#DDDDDD',
-  \ 4: '#D1D1D1',
+  \ 1: '#F0F0F0',
+  \ 2: '#E0E0E0',
+  \ 3: '#D1D1D1',
+  \ 4: '#C1C1C1',
 \ }
 let s:bg=#{
   \ 0: '#000000',
@@ -113,14 +113,14 @@ let g:syntax_hi=#{
   \ String         : [s:fg.0,         'NONE', 'NONE'],
   \ Character      : [s:fg.0,         'NONE', 'NONE'],
   \ Number         : [s:fg.2,         'NONE', 'NONE'],
-  \ Boolean        : [s:fg.0,         'NONE', 'bold'],
+  \ Boolean        : [s:fg.4,         'NONE', 'bold'],
   \ Float          : [s:fg.2,         'NONE', 'NONE'],
   \ Identifier     : [s:fg.4,         'NONE', 'NONE'],
   \ Function       : [s:fg.4,         'NONE', 'NONE'],
   \ Statement      : [s:fg.0,         'NONE', 'bold'],
   \ Conditional    : [s:fg.0,         'NONE', 'bold'],
   \ Repeat         : [s:fg.0,         'NONE', 'bold'],
-  \ Label          : [s:fg.0,         'NONE', 'bold'],
+  \ Label          : [s:fg.4,         'NONE', 'bold'],
   \ Operator       : [s:fg.0,         'NONE', 'NONE'],
   \ Keyword        : [s:fg.0,         'NONE', 'bold'],
   \ Exception      : [s:fg.0,         'NONE', 'bold'],
@@ -197,7 +197,9 @@ call Hi(v:false,   'Search',                'NONE',                 s:accent.pur
 call Hi(v:false,   'Substitute',            s:fg.0,                 s:accent.blue.bright,   'NONE')
 
 " Splits
+" For some reason, `WinSeparator` is now used in favor of `VertSplit`.
 call Hi(v:false,   'VertSplit',             s:bg.2,                 s:bg.2,                 'NONE')
+call Hi(v:false,   'WinSeparator',          s:bg.2,                 s:bg.2,                 'NONE')
 call Hi(v:false,   'StatusLine',            s:bg.2,                 s:bg.2,                 'NONE')
 call Hi(v:false,   'StatusLineNC',          s:bg.2,                 s:bg.2,                 'NONE')
 
@@ -214,14 +216,20 @@ call Hi(v:false,   'Whitespace',            s:accent.blue.bright,   'NONE',     
 call Hi(v:true,    'DiffAdd',               'NONE',                 s:basic.green.dim,      'NONE')
 call Hi(v:true,    'diffAdded',             'NONE',                 s:basic.green.dim,      'NONE')
 call Hi(v:true,    'GitSignsAdd',           s:basic.green.bright,   'NONE',                 'NONE')
+call Hi(v:true,    'GitSignsAddNr',         s:basic.green.bright,   'NONE',                 'NONE')
+call Hi(v:true,    'GitSignsAddLn',         s:basic.green.bright,   'NONE',                 'NONE')
 
 call Hi(v:true,    'DiffChange',            'NONE',                 s:basic.blue.dim,       'NONE')
 call Hi(v:true,    'diffChanged',           'NONE',                 s:basic.blue.dim,       'NONE')
 call Hi(v:true,    'GitSignsChange',        s:basic.blue.bright,    'NONE',                 'NONE')
+call Hi(v:true,    'GitSignsChangeNr',      s:basic.blue.bright,    'NONE',                 'NONE')
+call Hi(v:true,    'GitSignsChangeLn',      s:basic.blue.bright,    'NONE',                 'NONE')
 
 call Hi(v:true,    'DiffDelete',            'NONE',                 s:basic.red.dim,        'NONE')
 call Hi(v:true,    'diffRemoved',           'NONE',                 s:basic.red.dim,        'NONE')
 call Hi(v:true,    'GitSignsDelete',        s:basic.red.bright,     'NONE',                 'NONE')
+call Hi(v:true,    'GitSignsDeleteNr',      s:basic.red.bright,     'NONE',                 'NONE')
+call Hi(v:true,    'GitSignsDeleteLn',      s:basic.red.bright,     'NONE',                 'NONE')
 
 call Hi(v:true,    'DiffText',              s:fg.1,                 s:basic.blue.medium,    'NONE')
 

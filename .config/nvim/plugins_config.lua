@@ -32,36 +32,11 @@ require'nvim-treesitter.configs'.setup {
 -- gitsigns
 require('gitsigns').setup {
   signs = {
-    add = {
-      hl = 'GitSignsAdd',
-      text = '┃',
-      numhl='GitSignsAddNr',
-      linehl='GitSignsAddLn'
-    },
-    change = {
-      hl = 'GitSignsChange',
-      text = '┃',
-      numhl='GitSignsChangeNr',
-      linehl='GitSignsChangeLn'
-    },
-    delete = {
-      hl = 'GitSignsDelete',
-      text = '╽',
-      numhl='GitSignsDeleteNr',
-      linehl='GitSignsDeleteLn'
-    },
-    topdelete = {
-      hl = 'GitSignsDelete',
-      text = '╿',
-      numhl='GitSignsDeleteNr',
-      linehl='GitSignsDeleteLn'
-    },
-    changedelete = {
-      hl = 'GitSignsChange',
-      text = '┇',
-      numhl='GitSignsChangeNr',
-      linehl='GitSignsChangeLn'
-    },
+    add = { text = '┃' },
+    change = { text = '┃' },
+    delete = { text = '╽' },
+    topdelete = { text = '╿' },
+    changedelete = { text = '┇' },
   }
 }
 
@@ -75,7 +50,7 @@ vim.cmd [[
 
 -- bufferline.nvim
 -- bufferline.nvim is configured in another file:
--- $DOTFILES/.config/nvim/bufferline_config.lua
+-- ~/.config/nvim/bufferline_config.lua
 
 -- telescope.nvim
 require('telescope').setup {
@@ -126,7 +101,7 @@ require'nvim-web-devicons'.setup {
 
 -- lualine
 -- Lualine is configured in another file:
--- $DOTFILES/.config/nvim/lualine_config.lua
+-- ~/.config/nvim/lualine_config.lua
 
 -- trouble.nvim
 require('trouble').setup {
@@ -166,27 +141,119 @@ luasnip.add_snippets(nil, {
 
     luasnip.snippet({
       trig = 'textemplate',
-      namr = 'Personal Tex Template',
-      dscr = 'Formatting template for Tex'
+      namr = 'Personal TeX Document Template',
+      dscr = 'A TeX `article` document template that includes all the packages and configurations I use the most.'
     }, {
       luasnip.text_node({
       '\\documentclass{article}',
       '\\usepackage{graphicx}',
+      '\\graphicspath{{./img/}} % Images has to be under `./img/`; otherwise, change the path here',
+      '\\usepackage{float}',
+      '\\usepackage{multicol}',
       '\\usepackage{titlesec}',
-      '\\usepackage[a4paper, margin=1in]{geometry}',
+      '\\usepackage[a4paper, margin=0.8in]{geometry}',
       '\\usepackage{verbatim}',
+      '\\usepackage{amsmath}',
+      '\\usepackage{amssymb}',
+      '\\usepackage{bm} % For bold Greek math symbols, e.g., `\\omega`',
+      '\\usepackage{underscore} % To avoid the need for escaping underscores in text mode',
       '\\usepackage{enumitem}',
-      '\\usepackage{soul}',
+      '\\usepackage{soul} % For strikethroughs',
+      '\\usepackage{array} % For better table corners',
       '\\usepackage{hyperref}',
-      '\\hypersetup{colorlinks=true}', '',
+      '\\hypersetup{colorlinks=true, citecolor=blue}',
+      '\\usepackage{xcolor}',
+      '\\usepackage[T1]{fontenc}',
+      '\\usepackage{listings}',
+      '\\lstset{%',
+      '  basicstyle=\\ttfamily,',
+      '  columns=fullflexible,',
+      '  emphstyle=\\color{red},',
+      '  literate={~}{{\\fontfamily{ptm}\\selectfont \\textasciitilde}}1',
+      '}', '',
       '\\title{'}), luasnip.insert_node(1, 'title'), luasnip.text_node({' \\\\ \\large \\textit{'}), luasnip.insert_node(2, 'subtitle'), luasnip.text_node({'}}',
-      '\\author{Ghazali Ahlam Jazali\\quad\\href{mailto:academic@jazali.org}{\texttt{academic@jazali.org}}}', '',
+      '\\author{Ghazali Ahlam Jazali\\ \\href{mailto:academic@jazali.org}{\\texttt{academic@jazali.org}}}', '',
       '\\date{'}), luasnip.function_node(function() return { os.date('%d %B %Y') } end, {}), luasnip.text_node({'}', '',
       '\\begin{document}', '',
       '\\maketitle', '',
       '\\tableofcontents', '',
       '\\end{document}'})
-    })
+    }),
+
+    luasnip.snippet({
+      trig = 'texlstlisting',
+      namr = '`lstlisting` Block',
+      dscr = 'A detailed `lstlisting` block that includes the following properties: `title`, `emph`, `alsoletter`, `keepspaces`, and `upquote`.'
+    }, {
+      luasnip.text_node({
+      '\\begin{lstlisting}[title='}), luasnip.insert_node(1, ''), luasnip.text_node({', emph={'}), luasnip.insert_node(2, ''), luasnip.text_node({'}, alsoletter={'}), luasnip.insert_node(3, ''), luasnip.text_node({'}, alsoother={'}), luasnip.insert_node(4, ''), luasnip.text_node({'}, keepspaces=true, upquote=true, escapechar=&]',
+      '  '}),
+      luasnip.text_node({'', '\\end{lstlisting}'})
+    }),
+
+    luasnip.snippet({
+      trig = 'textable',
+      namr = '`table` Block',
+      dscr = 'A pre-formatted `table` block with two columns and four rows, where the two columns of the first row are merged.'
+    }, {
+      luasnip.text_node({
+      '\\begin{table}[H]',
+      '  \\centering',
+      '  \\caption{}',
+      '  %\\label{tbl:}',
+      '  \\begin{tabular}{|l|l|}',
+      '    \\hline',
+      '    \\multicolumn{2}{|c|}{}\\ \\hline\\hline',
+      '    \\multicolumn{1}{|l|}{} & \\ \\hline',
+      '    \\multicolumn{1}{|l|}{} & \\ \\hline',
+      '    \\multicolumn{1}{|l|}{} & \\ \\hline',
+      '  \\end{tabular}',
+      '\\end{table}'
+      }),
+    }),
+
+    luasnip.snippet({
+      trig = 'texfig',
+      namr = '`figure` Block',
+      dscr = 'A pre-formatted `figure` block.'
+    }, {
+      luasnip.text_node({
+      '\\begin{figure}[H]',
+      '  \\centering',
+      '  \\includegraphics[width=0.5\\textwidth]{}',
+      '  \\caption{}',
+      '  %\\label{fig:}',
+      '\\end{figure}'
+      }),
+    }),
+
+    luasnip.snippet({
+      trig = 'texmulticols',
+      namr = '`multicols` Block',
+      dscr = 'A pre-formatted `multicols` block for three `figure`s. Put the `figure`s outside the `multicols` block to use positioning arguments like `H`.'
+    }, {
+      luasnip.text_node({
+      '\\begin{multicols}{3}',
+      '  \\begin{figure}[H] %\\label{fig:}',
+      '    \\centering',
+      '    \\includegraphics[width=0.3\\textwidth]{}',
+      '    \\caption{}',
+      '  \\end{figure}',
+      '  \\columnbreak',
+      '  \\begin{figure}[H] %\\label{fig:}',
+      '    \\centering',
+      '    \\includegraphics[width=0.3\\textwidth]{}',
+      '    \\caption{}',
+      '  \\end{figure}',
+      '  \\columnbreak',
+      '  \\begin{figure}[H] %\\label{fig:}',
+      '    \\centering',
+      '    \\includegraphics[width=0.3\\textwidth]{}',
+      '    \\caption{}',
+      '  \\end{figure}',
+      '\\end{multicols}'
+      }),
+    }),
   }
 })
 

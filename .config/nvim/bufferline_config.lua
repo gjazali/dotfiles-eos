@@ -26,6 +26,11 @@ require("bufferline").setup {
       end
       return s
     end,
+
+    left_mouse_command = '',
+    right_mouse_command = '',
+    middle_mouse_command = '',
+    close_command = '',
   },
   highlights = {
     fill = {

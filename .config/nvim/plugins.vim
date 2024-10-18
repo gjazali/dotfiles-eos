@@ -6,6 +6,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
+" Performance
+Plug 'dstein64/vim-startuptime'
+
 " Parsing and Syntax Highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -24,6 +27,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 "Plug 'mfussenegger/nvim-jdtls'
 Plug 'lervag/vimtex'
 "Plug 'kdheepak/cmp-latex-symbols'
+Plug 'martineausimon/nvim-lilypond-suite'
 
 " Navigation
 Plug 'nvim-telescope/telescope.nvim'

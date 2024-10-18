@@ -122,6 +122,12 @@ set breakindent breakindentopt=shift:0 cpo+=n linebreak
 au BufRead,FileReadPost,BufReadPre,FileReadPre * hi! link NonText LineNR
 set nowrap
 
+" Turn on text wrapping for `.tex` files
+augroup WrapLineInTeXFile
+  autocmd!
+  autocmd FileType tex setlocal wrap
+augroup END
+
 " Keep a third of the lines under and over cursor when possible
 augroup VCenterCursor
   au!
