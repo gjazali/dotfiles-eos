@@ -8,6 +8,39 @@ bright() {
   brightnessctl set ${1}%
 }
 
+# Switch DNS-over-TLS (DoT) on and off
+#
+# Parameters: $1: {on|off}
+#
+dotctl() {
+  if [[ $1 == 'off' ]]; then
+    sudo sed -i -e 's|^DNSOverTLS=yes|DNSOverTLS=no|' /etc/systemd/resolved.conf \
+      && sudo systemctl restart systemd-resolved
+  else
+    sudo sed -i -e 's|^DNSOverTLS=no|DNSOverTLS=yes|' /etc/systemd/resolved.conf \
+      && sudo systemctl restart systemd-resolved
+  fi
+}
+
+# Benchmark CPU core using `7z`
+#
+# Parameters: $1: CPU Core ID (can be 0 to n where n is the number of core
+# subtracted by one)
+#
+benchmarkcore() {
+  taskset -c $1 7z b -mmt1
+}
+
+# Send SSH key to a remote machine using `ssh` (without `ssh-copy-id`)
+#
+# Parameters: $1: The public key file, e.g., `~/.ssh/id_rsa.pub`; $2: Username
+# in the remote machine; $3: The public IP address or identifying domain of the
+# remote machine
+#
+send-ssh-key() {
+  cat $1 | ssh $2@$3 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/.ssh && cat >> ~/.ssh/authorized_keys"
+}
+
 # Run job as asynchronous and without output
 #
 # Parameters: $1: Command; $2: Arguments of the command; $3: A `--no-disown`

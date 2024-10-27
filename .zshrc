@@ -4,6 +4,9 @@ source ~/.prompt
 
 alias mv="mv -i"
 alias cp="cp -i"
+alias listusedports="sudo netstat -tulpen | grep LISTEN"
+alias publicip="curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
+alias routerip="ip route show | grep -i 'default via'| awk '{print $3 }'"
 alias bltoff="sudo systemctl stop bluetooth.service \
   && sudo systemctl disable bluetooth.service"
 alias blton="sudo systemctl enable bluetooth.service \
@@ -47,6 +50,14 @@ alias pacls="pacman -Qi \
   | sort -nrk 2 \
   | grep MiB \
   | less"
+alias lockresolv="sudo chattr +i /etc/resolv.conf"
+alias unlockresolv="sudo chattr -i /etc/resolv.conf"
+alias restartkeyboarddriver="sudo rmmod atkbd ; sleep 3 ; sudo modprobe atkbd reset=1"
+alias restartkeyboard="xinput float 13 ; sleep 3 ; xinput reattach 13 3"
+alias restartmappings="xmodmap ~/.Xmodmap"
+alias batterysaver="sudo powertop --auto-tune"
+alias batterysaverexcludemouse="sudo powertop --auto-tune && sudo sh -c 'echo on > $(grep -l USB\ Receiver /sys/bus/usb/devices/*/product | sed s@product@power\\/control@)'"
+alias killmatlab="killall MathWorksServiceHost; killall MATLABConnector; killall MATLAB"
 
 # Make NNN change to the directory its quitting from
 # Be sure to run NNN using `n` instead of `nnn`
@@ -54,11 +65,11 @@ if [ -f /usr/share/nnn/quitcd/quitcd.bash_sh_zsh ]; then
   source /usr/share/nnn/quitcd/quitcd.bash_sh_zsh
 fi
 
-# WIP: Intercept illegal commands
+# Intercept illegal commands
 #original_path="$PATH"
 #PATH="/"
 #command_not_found_handler() {(
-  #illegal_command_pattern = '.*(sudo)?\s+rm\s+(((-[rR]f|-f[rR]|-f\s+-[rR]|-[rR]\s+-f|--recursive\s+--force|--force\s+--recursive|--recursive\s+-f|-r\s+--force|--force\s+-r|-f\s+--recursive)\s*(--no-preserve-root)?)|((--no-preserve-root)?\s+(-[rR]f|-f[rR]|-f\s+-[rR]|-[rR]\s+-f|--recursive\s+--force|--force\s+--recursive|--recursive\s+-f|-r\s+--force|--force\s+-r|-f\s+--recursive))) \/.*'
+  #illegal_command_pattern='.*(sudo)?\s+rm\s+(((-[rR]f|-f[rR]|-f\s+-[rR]|-[rR]\s+-f|--recursive\s+--force|--force\s+--recursive|--recursive\s+-f|-r\s+--force|--force\s+-r|-f\s+--recursive)\s*(--no-preserve-root)?)|((--no-preserve-root)?\s+(-[rR]f|-f[rR]|-f\s+-[rR]|-[rR]\s+-f|--recursive\s+--force|--force\s+--recursive|--recursive\s+-f|-r\s+--force|--force\s+-r|-f\s+--recursive))) \/\s+.*'
 
   #if [[ "$1" =~ $illegal_command_pattern ]]; then
     #echo 'Deleting the `root` directory is not allowed. This incident has been logged.' >&2
