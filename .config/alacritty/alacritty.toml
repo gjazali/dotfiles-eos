@@ -61,7 +61,7 @@ cyan    = '#97E9EE'
 
 [keyboard]
 bindings = [
-  {key = ']', mods = 'Control', action = 'IncreaseFontSize'},
-  {key = '[', mods = 'Control', action = 'DecreaseFontSize'},
+  {key = '.', mods = 'Control', action = 'IncreaseFontSize'},
+  {key = ',', mods = 'Control', action = 'DecreaseFontSize'},
   {key = '=', mods = 'Control', action = 'ResetFontSize'}
 ]

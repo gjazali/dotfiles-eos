@@ -16,9 +16,35 @@ dotctl() {
   if [[ $1 == 'off' ]]; then
     sudo sed -i -e 's|^DNSOverTLS=yes|DNSOverTLS=no|' /etc/systemd/resolved.conf \
       && sudo systemctl restart systemd-resolved
-  else
+  elif [[ $1 == 'on' ]]; then
     sudo sed -i -e 's|^DNSOverTLS=no|DNSOverTLS=yes|' /etc/systemd/resolved.conf \
       && sudo systemctl restart systemd-resolved
+  fi
+}
+
+# Tunnel connections with SSH and use a server as gateway
+#
+# Parameters $1: user@host
+#
+tunnel() {
+  sshuttle -r $1 0.0.0.0/0
+}
+
+# Change charging limit
+#
+# Parameters: $1: {on|off|<any_number>}
+#
+tlpctl() {
+  default_value=76
+  if [[ $1 == 'off' ]]; then
+    sudo sed -ire 's|^STOP_CHARGE_THRESH_BAT0=.*$|STOP_CHARGE_THRESH_BAT0=100|' /etc/tlp.conf \
+      && sudo tlp start
+  elif [[ $1 == 'on' ]]; then
+    sudo sed -ire 's|^STOP_CHARGE_THRESH_BAT0=.*$|STOP_CHARGE_THRESH_BAT0=$default_value|' /etc/tlp.conf \
+      && sudo tlp start
+  else
+    sudo sed -ire 's|^STOP_CHARGE_THRESH_BAT0=.*$|STOP_CHARGE_THRESH_BAT0='"$1"'|' /etc/tlp.conf \
+      && sudo tlp start
   fi
 }
 
@@ -104,12 +130,15 @@ jupyter2html() {
 # When zipping, this function is designed to be used from *inside* the
 # directory
 #
-# Parameters: $1: {zip|unzip}; $2: The name of the new `.epub` file; $3 For
-# $1=unzip only, specify the name of the directory for the unzipped file
+# Parameters: $1: {zip|unzip}; $2: The name of the new `.epub` file without the
+# extension (if the extension is included, the function will remove it
+# automatically); $3 For $1=unzip only, specify the name of the directory for
+# the unzipped file
 #
 epubctl() {
   if [[ $1 == "zip" ]]; then
-    zip -rX ../$2.epub ./* # mimetype META-INF/ OEBPS/
+    [[ $2 == *.epub ]] && file=$(echo $2 | sed -e "s/\.epub$//") || file=$2
+    zip -rX ../$file.epub ./* # mimetype META-INF/ OEBPS/
   elif [[ $1 == "unzip" ]]; then
     unzip $2 -d $3
   else
@@ -135,17 +164,34 @@ copyptrm() {
 
 # Mount `rclone` volumes
 #
-# Parameters: $1: Remote name (e.g. onedrive); $2: Local directory (e.g.
-# ~/OneDrive)
+# Parameters: $1: Remote name (e.g. onedrive); $2: Remote directory; $3: Local
+# directory (e.g. ~/OneDrive)
 #
 rcmount() {
   if [[ $1 == 'onedrive' ]]; then
-    rclone mount onedrive: ~/OneDrive --onedrive-delta --vfs-cache-mode full
+    if [[ $2 == '/' ]]; then
+      rclone mount onedrive: $3 --onedrive-delta --vfs-cache-mode full --drive-chunk-size 128M &
+    else
+      rclone mount onedrive:$2 $3 --onedrive-delta --vfs-cache-mode full --drive-chunk-size 128M &
+    fi
   elif [[ $1 == 'googledrive' ]]; then
-    rclone mount googledrive: ~/GoogleDrive --vfs-cache-mode full
+    if [[ $2 == '/' ]]; then
+      rclone mount googledrive: $3 --vfs-cache-mode full --drive-chunk-size 128M &
+    else
+      rclone mount googledrive:$2 $3 --vfs-cache-mode full --drive-chunk-size 128M &
+    fi
   else
     >&2 echo 'Invalid argument for `$1`' && false # Output error code 1
   fi
+}
+
+# Unmount `rclone` volumes
+#
+# Parameters: $1: Remote name (e.g. onedrive); $2: Local directory (e.g.
+# ~/OneDrive)
+#
+rcumount() {
+  fusermount -u $1
 }
 
 # Find an item inside a directory

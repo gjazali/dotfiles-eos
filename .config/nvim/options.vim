@@ -163,6 +163,25 @@ set splitbelow splitright
 "filetype plugin indent on
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
+" Editing files encrypted with ASCII-armored GPG
+"
+" Ecrypt file using:
+"   gpg -c --armor <filename>
+"
+" The output file will end in a `.asc` extension
+"
+"set backupskip+=*.asc
+"set viminfo=
+"
+"augroup GPG
+"  autocmd!
+"  autocmd BufReadPost  *.asc :%!gpg -q -d
+"  autocmd BufReadPost  *.asc |redraw!
+"  autocmd BufWritePre  *.asc :%!gpg -q -e -a
+"  autocmd BufWritePost *.asc u
+"  autocmd VimLeave     *.asc :!clear
+"augroup END
+
 " Syntax highlighting
 function! Hi(bang, token, fg, bg, style)
   exe 'hi' . (a:bang==v:true ? '!' : '') . ' '

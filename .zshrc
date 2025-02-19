@@ -58,6 +58,7 @@ alias restartmappings="xmodmap ~/.Xmodmap"
 alias batterysaver="sudo powertop --auto-tune"
 alias batterysaverexcludemouse="sudo powertop --auto-tune && sudo sh -c 'echo on > $(grep -l USB\ Receiver /sys/bus/usb/devices/*/product | sed s@product@power\\/control@)'"
 alias killmatlab="killall MathWorksServiceHost; killall MATLABConnector; killall MATLAB"
+alias getwifipasswords="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 
 # Make NNN change to the directory its quitting from
 # Be sure to run NNN using `n` instead of `nnn`
